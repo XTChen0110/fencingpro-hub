@@ -3,156 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <title>FencingPro Hub</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: white;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0b0b0b;
+  color:white;
 }
 
 /* NAV */
-nav {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 10;
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 50px;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+  z-index:10;
 }
-
-nav ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
+nav ul{
+  display:flex;
+  gap:30px;
+  list-style:none;
 }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  position: relative;
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:60px;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url('https://picsum.photos/id/1011/1600/900');
+  background-size:cover;
 }
-
-.hero img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero h1{
+  font-size:70px;
 }
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+.hero p{
+  margin-top:20px;
+  opacity:0.8;
 }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 140px 60px;
-  max-width: 600px;
+.btn{
+  padding:14px 26px;
+  margin-top:20px;
+  margin-right:10px;
+  border:none;
+  cursor:pointer;
 }
-
-.hero h1 {
-  font-size: 70px;
-  font-weight: 800;
-}
-
-.hero p {
-  margin-top: 20px;
-  opacity: 0.8;
-}
-
-.btn {
-  padding: 14px 26px;
-  margin-top: 20px;
-  margin-right: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.primary {
-  background: #d4af37;
-  color: black;
-}
-
-.secondary {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-}
+.primary{background:#d4af37;color:black;}
+.secondary{background:transparent;border:1px solid white;color:white;}
 
 /* FINDER */
-.finder {
-  margin-top: -100px;
-  padding: 40px;
+.finder{
+  margin-top:-80px;
+  padding:40px;
 }
-
-.finder-box {
-  background: #111;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
+.finder-box{
+  background:#111;
+  padding:30px;
+  border-radius:12px;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
 }
-
-.finder input, .finder select {
-  padding: 12px;
-  margin: 10px;
+input,select{
+  padding:10px;
+  margin:10px;
 }
 
 /* CARDS */
-.section {
-  padding: 80px 40px;
-  text-align: center;
+.section{
+  padding:80px 40px;
+  text-align:center;
 }
-
-.cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.cards{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
-
-.card {
-  background: #111;
-  padding: 20px;
-  width: 280px;
-  border-radius: 12px;
-  transition: 0.3s;
+.card{
+  background:#111;
+  padding:20px;
+  width:280px;
+  border-radius:12px;
+  transition:0.3s;
 }
-
-.card:hover {
-  transform: translateY(-10px);
+.card:hover{transform:translateY(-10px);}
+.card img{
+  width:100%;
+  border-radius:8px;
 }
-
-.card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.price {
-  margin-top: 10px;
-  font-size: 22px;
-  color: #d4af37;
+.price{
+  color:#d4af37;
+  font-size:22px;
+  margin-top:10px;
 }
 
 /* VIDEO */
-iframe {
-  margin-top: 30px;
-  max-width: 90%;
+iframe{
+  margin-top:30px;
+  max-width:90%;
 }
 </style>
 </head>
@@ -171,12 +129,9 @@ iframe {
 
 <!-- HERO -->
 <section class="hero">
-  <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1600&q=80">
-  <div class="overlay"></div>
-
-  <div class="hero-content">
+  <div>
     <h1>Built for Champions</h1>
-    <p>Increase your gear sales with smart bundles and recommendations.</p>
+    <p>Smart gear recommendations. Increase your sales with better bundles.</p>
 
     <button class="btn primary">Find Your Gear</button>
     <button class="btn secondary">Explore Bundles</button>
@@ -189,7 +144,7 @@ iframe {
     <h2>Find Your Perfect Gear</h2>
 
     <input id="height" placeholder="Height (cm)">
-    
+
     <select id="level">
       <option>Beginner</option>
       <option>Intermediate</option>
@@ -202,20 +157,21 @@ iframe {
       <option>Sabre</option>
     </select>
 
+    <br>
     <button class="btn primary" onclick="recommend()">Get Recommendation</button>
 
     <p id="result"></p>
   </div>
 </section>
 
-<!-- BUNDLES -->
+<!-- PRODUCTS -->
 <section class="section">
   <h2>Featured Bundles</h2>
 
   <div class="cards">
 
     <div class="card">
-      <img src="https://www.absolutefencinggear.com/media/catalog/product/f/o/foil-set.jpg">
+      <img src="https://picsum.photos/id/21/400/250">
       <h3>Starter Kit</h3>
       <p>Perfect for beginners</p>
       <div class="price">$299</div>
@@ -226,9 +182,9 @@ iframe {
     </div>
 
     <div class="card">
-      <img src="https://www.absolutefencinggear.com/media/catalog/product/e/p/epee-set.jpg">
+      <img src="https://picsum.photos/id/29/400/250">
       <h3>Performance Kit</h3>
-      <p>Best for serious training</p>
+      <p>Best for training</p>
       <div class="price">$699</div>
 
       <a href="https://www.leonpaul.com/" target="_blank">
@@ -237,9 +193,9 @@ iframe {
     </div>
 
     <div class="card">
-      <img src="https://www.absolutefencinggear.com/media/catalog/product/s/a/sabre-set.jpg">
+      <img src="https://picsum.photos/id/42/400/250">
       <h3>Elite Kit</h3>
-      <p>For competitive fencers</p>
+      <p>Competition ready</p>
       <div class="price">$1199</div>
 
       <a href="https://www.blue-gauntlet.com/" target="_blank">
@@ -254,9 +210,8 @@ iframe {
 <section class="section">
   <h2>Learn Before You Buy</h2>
 
-  <iframe width="800" height="450"
-    src="https://www.youtube.com/embed/0W8z7Q1G8cQ"
-    frameborder="0"
+  <iframe width="700" height="400"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
     allowfullscreen>
   </iframe>
 </section>
@@ -268,23 +223,18 @@ iframe {
 </section>
 
 <script>
-function recommend() {
-  const level = document.getElementById("level").value;
-  const weapon = document.getElementById("weapon").value;
+function recommend(){
+  const level=document.getElementById("level").value;
+  const weapon=document.getElementById("weapon").value;
 
-  let result = "";
+  let result="";
+  if(level==="Beginner"){result="Starter Kit ($299)";}
+  else if(level==="Intermediate"){result="Performance Kit ($699)";}
+  else{result="Elite Kit ($1199)";}
 
-  if (level === "Beginner") {
-    result = "Starter Kit ($299)";
-  } else if (level === "Intermediate") {
-    result = "Performance Kit ($699)";
-  } else {
-    result = "Elite Kit ($1199)";
-  }
+  result+=" | Weapon: "+weapon;
 
-  result += " | Recommended for " + weapon;
-
-  document.getElementById("result").innerText = result;
+  document.getElementById("result").innerText=result;
 }
 </script>
 
