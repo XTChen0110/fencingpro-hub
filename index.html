@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>FencingPro Hub</title>
@@ -9,7 +9,7 @@
 <style>
 body{
   margin:0;
-  font-family:'Inter',sans-serif;
+  font-family:'Inter';
   background:#0b0b0b;
   color:white;
 }
@@ -18,27 +18,16 @@ body{
 nav{
   display:flex;
   justify-content:space-between;
-  padding:20px 50px;
+  padding:20px 40px;
   background:black;
-}
-nav ul{
-  display:flex;
-  gap:20px;
-  list-style:none;
 }
 
 /* HERO */
 .hero{
-  padding:100px 50px;
-  background:linear-gradient(to right,#000,#111);
+  padding:100px 40px;
 }
 .hero h1{
   font-size:60px;
-}
-
-/* SECTION */
-.section{
-  padding:60px 50px;
 }
 
 /* TABLE */
@@ -51,7 +40,7 @@ td,th{
   border-bottom:1px solid #222;
 }
 
-/* CARDS */
+/* CARD */
 .cards{
   display:flex;
   gap:20px;
@@ -60,126 +49,98 @@ td,th{
   background:#111;
   padding:20px;
   border-radius:10px;
-  width:250px;
-}
-.card img{
-  width:100%;
 }
 
-/* BTN */
+/* BUTTON */
 .btn{
-  padding:10px 20px;
   background:#d4af37;
-  color:black;
+  padding:10px 20px;
   border:none;
-  margin-top:10px;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
   <h2>FencingPro Hub</h2>
-  <ul>
-    <li>Rankings</li>
-    <li>Players</li>
-    <li>Gear</li>
-  </ul>
+  <div>Rankings | Players | Gear</div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<div class="hero">
   <h1>Fencing Rankings. Smarter.</h1>
-  <p>Data-driven insights powered by USA Fencing results.</p>
-</section>
+  <p>Powered by USA Fencing data</p>
+</div>
 
-<!-- RANKINGS -->
-<section class="section">
-  <h2>Top Fencers (Sample)</h2>
+<!-- RANKING -->
+<h2 style="padding:20px">Top Rankings</h2>
 
-  <table>
-    <tr>
-      <th>Rank</th>
-      <th>Name</th>
-      <th>Weapon</th>
-      <th>Points</th>
-    </tr>
-
-    <tr>
-      <td>#1</td>
-      <td>Alex Chen</td>
-      <td>Foil</td>
-      <td>2450</td>
-    </tr>
-
-    <tr>
-      <td>#2</td>
-      <td>James Lee</td>
-      <td>Epee</td>
-      <td>2300</td>
-    </tr>
-  </table>
-</section>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Name</th>
+<th>Weapon</th>
+<th>Points</th>
+<th>Win Rate</th>
+</tr>
+</thead>
+<tbody id="ranking"></tbody>
+</table>
 
 <!-- PLAYER ANALYSIS -->
-<section class="section">
-  <h2>Player Insights</h2>
+<h2 style="padding:20px">Player Analysis</h2>
+<div id="analysis" class="cards"></div>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Alex Chen</h3>
-      <p>Win Rate: 82%</p>
-      <p>Strength: Offensive tempo</p>
-    </div>
+<!-- GEAR -->
+<h2 style="padding:20px">Recommended Gear</h2>
 
-    <div class="card">
-      <h3>James Lee</h3>
-      <p>Win Rate: 76%</p>
-      <p>Strength: Defense</p>
-    </div>
+<div class="cards">
+  <div class="card">
+    <h3>Starter Kit</h3>
+    <button class="btn" onclick="window.open('https://www.absolutefencinggear.com')">
+      Buy
+    </button>
   </div>
-</section>
+</div>
 
-<!-- GEAR (赚钱模块) -->
-<section class="section">
-  <h2>Recommended Gear</h2>
+<script>
+fetch("data.json")
+.then(res => res.json())
+.then(data => {
 
-  <div class="cards">
+  let table="";
+  let analysis="";
 
-    <div class="card">
-      <img src="https://www.absolutefencinggear.com/media/catalog/product/f/o/foil-set.jpg">
-      <h3>Starter Kit</h3>
-      <p>$299</p>
+  data.forEach((p,i)=>{
+    let winRate = Math.round(p.wins / p.matches * 100);
 
-      <a href="https://www.absolutefencinggear.com/" target="_blank">
-        <button class="btn">Buy</button>
-      </a>
-    </div>
+    table += `
+      <tr>
+        <td>#${i+1}</td>
+        <td>${p.name}</td>
+        <td>${p.weapon}</td>
+        <td>${p.points}</td>
+        <td>${winRate}%</td>
+      </tr>
+    `;
 
-    <div class="card">
-      <img src="https://www.leonpaul.com/media/catalog/product/cache/1/image/800x800/">
-      <h3>Pro Gear</h3>
-      <p>Leon Paul</p>
+    let style = winRate > 70 ? "Aggressive" : "Defensive";
 
-      <a href="https://www.leonpaul.com/" target="_blank">
-        <button class="btn">View</button>
-      </a>
-    </div>
+    analysis += `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p>Win Rate: ${winRate}%</p>
+        <p>Style: ${style}</p>
+      </div>
+    `;
+  });
 
-  </div>
-</section>
-
-<!-- VIDEO -->
-<section class="section">
-  <h2>Match Analysis</h2>
-
-  <iframe width="600" height="350"
-    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    allowfullscreen>
-  </iframe>
-</section>
+  document.getElementById("ranking").innerHTML = table;
+  document.getElementById("analysis").innerHTML = analysis;
+});
+</script>
 
 </body>
 </html>
