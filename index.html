@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>FencingPro Hub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
+  margin:0;
   font-family:'Inter',sans-serif;
   background:#0b0b0b;
   color:white;
@@ -16,101 +16,63 @@ body{
 
 /* NAV */
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
   display:flex;
   justify-content:space-between;
   padding:20px 50px;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
-  z-index:10;
+  background:black;
 }
 nav ul{
   display:flex;
-  gap:30px;
+  gap:20px;
   list-style:none;
 }
 
 /* HERO */
 .hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  padding:60px;
-  background:
-    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-    url('https://picsum.photos/id/1011/1600/900');
-  background-size:cover;
+  padding:100px 50px;
+  background:linear-gradient(to right,#000,#111);
 }
 .hero h1{
-  font-size:70px;
+  font-size:60px;
 }
-.hero p{
-  margin-top:20px;
-  opacity:0.8;
-}
-.btn{
-  padding:14px 26px;
-  margin-top:20px;
-  margin-right:10px;
-  border:none;
-  cursor:pointer;
-}
-.primary{background:#d4af37;color:black;}
-.secondary{background:transparent;border:1px solid white;color:white;}
 
-/* FINDER */
-.finder{
-  margin-top:-80px;
-  padding:40px;
+/* SECTION */
+.section{
+  padding:60px 50px;
 }
-.finder-box{
-  background:#111;
-  padding:30px;
-  border-radius:12px;
-  max-width:900px;
-  margin:auto;
-  text-align:center;
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
 }
-input,select{
-  padding:10px;
-  margin:10px;
+td,th{
+  padding:12px;
+  border-bottom:1px solid #222;
 }
 
 /* CARDS */
-.section{
-  padding:80px 40px;
-  text-align:center;
-}
 .cards{
   display:flex;
   gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
 }
 .card{
   background:#111;
   padding:20px;
-  width:280px;
-  border-radius:12px;
-  transition:0.3s;
+  border-radius:10px;
+  width:250px;
 }
-.card:hover{transform:translateY(-10px);}
 .card img{
   width:100%;
-  border-radius:8px;
-}
-.price{
-  color:#d4af37;
-  font-size:22px;
-  margin-top:10px;
 }
 
-/* VIDEO */
-iframe{
-  margin-top:30px;
-  max-width:90%;
+/* BTN */
+.btn{
+  padding:10px 20px;
+  background:#d4af37;
+  color:black;
+  border:none;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -121,85 +83,88 @@ iframe{
 <nav>
   <h2>FencingPro Hub</h2>
   <ul>
-    <li>Home</li>
-    <li>Gear Finder</li>
-    <li>Bundles</li>
+    <li>Rankings</li>
+    <li>Players</li>
+    <li>Gear</li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>Built for Champions</h1>
-    <p>Smart gear recommendations. Increase your sales with better bundles.</p>
-
-    <button class="btn primary">Find Your Gear</button>
-    <button class="btn secondary">Explore Bundles</button>
-  </div>
+  <h1>Fencing Rankings. Smarter.</h1>
+  <p>Data-driven insights powered by USA Fencing results.</p>
 </section>
 
-<!-- FINDER -->
-<section class="finder">
-  <div class="finder-box">
-    <h2>Find Your Perfect Gear</h2>
-
-    <input id="height" placeholder="Height (cm)">
-
-    <select id="level">
-      <option>Beginner</option>
-      <option>Intermediate</option>
-      <option>Competitive</option>
-    </select>
-
-    <select id="weapon">
-      <option>Foil</option>
-      <option>Epee</option>
-      <option>Sabre</option>
-    </select>
-
-    <br>
-    <button class="btn primary" onclick="recommend()">Get Recommendation</button>
-
-    <p id="result"></p>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
+<!-- RANKINGS -->
 <section class="section">
-  <h2>Featured Bundles</h2>
+  <h2>Top Fencers (Sample)</h2>
+
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Weapon</th>
+      <th>Points</th>
+    </tr>
+
+    <tr>
+      <td>#1</td>
+      <td>Alex Chen</td>
+      <td>Foil</td>
+      <td>2450</td>
+    </tr>
+
+    <tr>
+      <td>#2</td>
+      <td>James Lee</td>
+      <td>Epee</td>
+      <td>2300</td>
+    </tr>
+  </table>
+</section>
+
+<!-- PLAYER ANALYSIS -->
+<section class="section">
+  <h2>Player Insights</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Alex Chen</h3>
+      <p>Win Rate: 82%</p>
+      <p>Strength: Offensive tempo</p>
+    </div>
+
+    <div class="card">
+      <h3>James Lee</h3>
+      <p>Win Rate: 76%</p>
+      <p>Strength: Defense</p>
+    </div>
+  </div>
+</section>
+
+<!-- GEAR (赚钱模块) -->
+<section class="section">
+  <h2>Recommended Gear</h2>
 
   <div class="cards">
 
     <div class="card">
-      <img src="https://picsum.photos/id/21/400/250">
+      <img src="https://www.absolutefencinggear.com/media/catalog/product/f/o/foil-set.jpg">
       <h3>Starter Kit</h3>
-      <p>Perfect for beginners</p>
-      <div class="price">$299</div>
+      <p>$299</p>
 
       <a href="https://www.absolutefencinggear.com/" target="_blank">
-        <button class="btn primary">Buy from Vendor</button>
+        <button class="btn">Buy</button>
       </a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/id/29/400/250">
-      <h3>Performance Kit</h3>
-      <p>Best for training</p>
-      <div class="price">$699</div>
+      <img src="https://www.leonpaul.com/media/catalog/product/cache/1/image/800x800/">
+      <h3>Pro Gear</h3>
+      <p>Leon Paul</p>
 
       <a href="https://www.leonpaul.com/" target="_blank">
-        <button class="btn primary">View on Leon Paul</button>
-      </a>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/42/400/250">
-      <h3>Elite Kit</h3>
-      <p>Competition ready</p>
-      <div class="price">$1199</div>
-
-      <a href="https://www.blue-gauntlet.com/" target="_blank">
-        <button class="btn primary">View Vendor</button>
+        <button class="btn">View</button>
       </a>
     </div>
 
@@ -208,35 +173,13 @@ iframe{
 
 <!-- VIDEO -->
 <section class="section">
-  <h2>Learn Before You Buy</h2>
+  <h2>Match Analysis</h2>
 
-  <iframe width="700" height="400"
+  <iframe width="600" height="350"
     src="https://www.youtube.com/embed/dQw4w9WgXcQ"
     allowfullscreen>
   </iframe>
 </section>
-
-<!-- BRANDS -->
-<section class="section">
-  <h2>Trusted Brands</h2>
-  <p>Leon Paul • Absolute Fencing • Blue Gauntlet</p>
-</section>
-
-<script>
-function recommend(){
-  const level=document.getElementById("level").value;
-  const weapon=document.getElementById("weapon").value;
-
-  let result="";
-  if(level==="Beginner"){result="Starter Kit ($299)";}
-  else if(level==="Intermediate"){result="Performance Kit ($699)";}
-  else{result="Elite Kit ($1199)";}
-
-  result+=" | Weapon: "+weapon;
-
-  document.getElementById("result").innerText=result;
-}
-</script>
 
 </body>
 </html>
