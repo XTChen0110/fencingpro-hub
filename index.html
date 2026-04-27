@@ -1,117 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>FencingPro Hub</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: white;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>FencingPro Hub</title>
 
-    header {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, #111, #000);
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  background: black;
+  color: white;
+}
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1603570419887-3d4b2d3a3c8c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+}
 
-    .btn {
-      background: white;
-      color: black;
-      padding: 12px 24px;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+.hero-content {
+  max-width: 600px;
+}
 
-    section {
-      padding: 60px 20px;
-    }
+h1 {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
 
-    .card {
-      background: #1a1a1a;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 400px;
-      border-radius: 10px;
-    }
+p {
+  font-size: 18px;
+  opacity: 0.8;
+}
 
-    input, select {
-      padding: 10px;
-      margin: 10px;
-      width: 80%;
-    }
-  </style>
+.btn {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: white;
+  color: black;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+/* SECTION */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.card {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  margin: 20px;
+  display: inline-block;
+  width: 280px;
+}
+
+/* FORM */
+input, select {
+  padding: 12px;
+  margin: 10px;
+  width: 200px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>FencingPro Hub</h1>
-  <p>Sell More. Look Pro. Train Smart.</p>
-  <button class="btn" onclick="scrollToFinder()">Find Your Gear</button>
-</header>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Built for Champions</h1>
+    <p>Premium fencing gear. Smart recommendations. Sell more with better design.</p>
 
-<section id="finder">
-  <h2>Gear Finder</h2>
+    <button class="btn btn-primary">Find Your Gear</button>
+    <button class="btn btn-secondary">Explore Bundles</button>
+  </div>
+</div>
+
+<!-- GEAR FINDER -->
+<div class="section">
+  <h2>Find Your Perfect Gear</h2>
+
+  <input id="height" placeholder="Height (cm)">
+  <select id="level">
+    <option>Beginner</option>
+    <option>Intermediate</option>
+    <option>Competitive</option>
+  </select>
+
+  <select id="weapon">
+    <option>Foil</option>
+    <option>Epee</option>
+    <option>Sabre</option>
+  </select>
+
+  <br>
+  <button class="btn btn-primary" onclick="recommend()">Get Recommendation</button>
+
+  <p id="result"></p>
+</div>
+
+<!-- BUNDLES -->
+<div class="section">
+  <h2>Featured Bundles</h2>
 
   <div class="card">
-    <input id="height" placeholder="Your height (cm)" />
-    <select id="level">
-      <option>Beginner</option>
-      <option>Intermediate</option>
-      <option>Competitive</option>
-    </select>
-
-    <select id="weapon">
-      <option>Foil</option>
-      <option>Epee</option>
-      <option>Sabre</option>
-    </select>
-
-    <br />
-    <button class="btn" onclick="recommend()">Get Recommendation</button>
-
-    <p id="result"></p>
-  </div>
-</section>
-
-<section>
-  <h2>Bundles</h2>
-
-  <div class="card">
-    <h3>Beginner Kit</h3>
-    <p>$299 - Everything you need to start</p>
+    <h3>Starter Kit</h3>
+    <p>Everything you need to start</p>
+    <strong>$299</strong>
   </div>
 
   <div class="card">
-    <h3>Competition Kit</h3>
-    <p>$899 - Built for serious fencers</p>
+    <h3>Performance Kit</h3>
+    <p>Best for serious training</p>
+    <strong>$699</strong>
   </div>
-</section>
+
+  <div class="card">
+    <h3>Elite Kit</h3>
+    <p>For competitive fencers</p>
+    <strong>$1199</strong>
+  </div>
+</div>
 
 <script>
-function scrollToFinder() {
-  document.getElementById("finder").scrollIntoView({ behavior: "smooth" });
-}
-
 function recommend() {
   const level = document.getElementById("level").value;
+
   let result = "";
 
   if (level === "Beginner") {
-    result = "Recommended: Beginner Kit ($299)";
+    result = "Starter Kit - $299 (Recommended)";
   } else if (level === "Intermediate") {
-    result = "Recommended: Intermediate Set ($499)";
+    result = "Performance Kit - $699 (Recommended)";
   } else {
-    result = "Recommended: Competition Kit ($899)";
+    result = "Elite Kit - $1199 (Recommended)";
   }
 
   document.getElementById("result").innerText = result;
