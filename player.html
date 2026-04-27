@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Player</title>
+
+<style>
+body{
+  background:#0b0b0b;
+  color:white;
+  font-family:Arial;
+  padding:40px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="name"></h1>
+<p id="info"></p>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+
+document.getElementById("name").innerText = name;
+
+fetch("data.json")
+.then(res => res.json())
+.then(data=>{
+  const player = data.find(p => p.name === name);
+
+  if(player){
+    let winRate = Math.round(player.wins / player.matches * 100);
+
+    document.getElementById("info").innerText =
+      "Weapon: " + player.weapon +
+      " | Points: " + player.points +
+      " | Win Rate: " + winRate + "%";
+  }
+});
+</script>
+
+</body>
+</html>
