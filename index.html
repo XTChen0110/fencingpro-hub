@@ -24,40 +24,56 @@ nav{
 
 /* HERO */
 .hero{
-  padding:100px 40px;
+  padding:120px 40px;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url('https://images.unsplash.com/photo-1603570419887-3d4b2d3a3c8c?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;
 }
 .hero h1{
   font-size:60px;
 }
 
 /* TABLE */
+.table-container{
+  padding:40px;
+}
 table{
   width:100%;
   border-collapse:collapse;
 }
 td,th{
-  padding:12px;
+  padding:14px;
   border-bottom:1px solid #222;
 }
-
-/* CARD */
-.cards{
-  display:flex;
-  gap:20px;
+tr:hover{
+  background:#111;
+  cursor:pointer;
 }
+.rank{
+  color:#d4af37;
+  font-weight:bold;
+}
+
+/* ANALYSIS */
 .card{
   background:#111;
   padding:20px;
+  margin:20px;
   border-radius:10px;
+  display:inline-block;
+  width:250px;
 }
 
-/* BUTTON */
-.btn{
-  background:#d4af37;
-  padding:10px 20px;
-  border:none;
-  cursor:pointer;
+/* BADGE */
+.badge{
+  padding:5px 10px;
+  border-radius:5px;
+  font-size:12px;
 }
+.hot{background:#d4af37;color:black;}
+.stable{background:#444;}
+.risk{background:#a33;}
 </style>
 </head>
 
@@ -70,40 +86,29 @@ td,th{
 
 <div class="hero">
   <h1>Fencing Rankings. Smarter.</h1>
-  <p>Powered by USA Fencing data</p>
+  <p>AI-driven insights powered by USA Fencing data</p>
 </div>
 
-<!-- RANKING -->
-<h2 style="padding:20px">Top Rankings</h2>
+<div class="table-container">
+  <h2>Top Rankings</h2>
 
-<table>
-<thead>
-<tr>
-<th>Rank</th>
-<th>Name</th>
-<th>Weapon</th>
-<th>Points</th>
-<th>Win Rate</th>
-</tr>
-</thead>
-<tbody id="ranking"></tbody>
-</table>
-
-<!-- PLAYER ANALYSIS -->
-<h2 style="padding:20px">Player Analysis</h2>
-<div id="analysis" class="cards"></div>
-
-<!-- GEAR -->
-<h2 style="padding:20px">Recommended Gear</h2>
-
-<div class="cards">
-  <div class="card">
-    <h3>Starter Kit</h3>
-    <button class="btn" onclick="window.open('https://www.absolutefencinggear.com')">
-      Buy
-    </button>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Weapon</th>
+        <th>Points</th>
+        <th>Win Rate</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="ranking"></tbody>
+  </table>
 </div>
+
+<h2 style="padding-left:40px">Player Insights</h2>
+<div id="analysis"></div>
 
 <script>
 fetch("data.json")
@@ -114,15 +119,23 @@ fetch("data.json")
   let analysis="";
 
   data.forEach((p,i)=>{
+
     let winRate = Math.round(p.wins / p.matches * 100);
 
+    let status="stable";
+    let label="Stable";
+
+    if(winRate > 80){status="hot"; label="Hot";}
+    else if(winRate < 50){status="risk"; label="Risk";}
+
     table += `
-      <tr>
-        <td>#${i+1}</td>
+      <tr onclick="goPlayer('${p.name}')">
+        <td class="rank">#${i+1}</td>
         <td>${p.name}</td>
         <td>${p.weapon}</td>
         <td>${p.points}</td>
         <td>${winRate}%</td>
+        <td><span class="badge ${status}">${label}</span></td>
       </tr>
     `;
 
@@ -133,6 +146,7 @@ fetch("data.json")
         <h3>${p.name}</h3>
         <p>Win Rate: ${winRate}%</p>
         <p>Style: ${style}</p>
+        <p>Status: ${label}</p>
       </div>
     `;
   });
@@ -140,6 +154,10 @@ fetch("data.json")
   document.getElementById("ranking").innerHTML = table;
   document.getElementById("analysis").innerHTML = analysis;
 });
+
+function goPlayer(name){
+  window.location.href = "player.html?name=" + encodeURIComponent(name);
+}
 </script>
 
 </body>
