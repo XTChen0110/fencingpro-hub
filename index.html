@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FencingPro Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, #111, #000);
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: white;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    input, select {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>FencingPro Hub</h1>
+  <p>Sell More. Look Pro. Train Smart.</p>
+  <button class="btn" onclick="scrollToFinder()">Find Your Gear</button>
+</header>
+
+<section id="finder">
+  <h2>Gear Finder</h2>
+
+  <div class="card">
+    <input id="height" placeholder="Your height (cm)" />
+    <select id="level">
+      <option>Beginner</option>
+      <option>Intermediate</option>
+      <option>Competitive</option>
+    </select>
+
+    <select id="weapon">
+      <option>Foil</option>
+      <option>Epee</option>
+      <option>Sabre</option>
+    </select>
+
+    <br />
+    <button class="btn" onclick="recommend()">Get Recommendation</button>
+
+    <p id="result"></p>
+  </div>
+</section>
+
+<section>
+  <h2>Bundles</h2>
+
+  <div class="card">
+    <h3>Beginner Kit</h3>
+    <p>$299 - Everything you need to start</p>
+  </div>
+
+  <div class="card">
+    <h3>Competition Kit</h3>
+    <p>$899 - Built for serious fencers</p>
+  </div>
+</section>
+
+<script>
+function scrollToFinder() {
+  document.getElementById("finder").scrollIntoView({ behavior: "smooth" });
+}
+
+function recommend() {
+  const level = document.getElementById("level").value;
+  let result = "";
+
+  if (level === "Beginner") {
+    result = "Recommended: Beginner Kit ($299)";
+  } else if (level === "Intermediate") {
+    result = "Recommended: Intermediate Set ($499)";
+  } else {
+    result = "Recommended: Competition Kit ($899)";
+  }
+
+  document.getElementById("result").innerText = result;
+}
+</script>
+
+</body>
+</html>
