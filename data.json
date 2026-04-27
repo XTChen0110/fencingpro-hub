@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Alexander Massialas",
+    "weapon": "Foil",
+    "points": 2600,
+    "wins": 90,
+    "matches": 110
+  },
+  {
+    "name": "Gerek Meinhardt",
+    "weapon": "Foil",
+    "points": 2500,
+    "wins": 85,
+    "matches": 105
+  },
+  {
+    "name": "Race Imboden",
+    "weapon": "Foil",
+    "points": 2400,
+    "wins": 80,
+    "matches": 100
+  }
+]
